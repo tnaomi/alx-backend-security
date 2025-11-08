@@ -9,3 +9,12 @@ class RequestLog(models.Model):
 
     def __str__(self):
         return f"{self.ip_address} accessed {self.path} at {self.timestamp}"
+
+class BlockedIp(models.Model):
+    """Stores blocked IP addresses
+    """
+    ip_address = models.GenericIPAddressField(unique=True)
+    blocked_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Blocked IP: {self.ip_address} at {self.blocked_at}"
